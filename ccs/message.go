@@ -5,10 +5,16 @@ package ccs
 // Google recommends Data field to be strings key/value pairs and keys cannot be
 // reserved words described in GCM server documentation.
 // https://developer.android.com/google/gcm/ccs.html#format
+type Notification struct {
+	Title string `json:"title"`
+	Body  string `json:"body"`
+}
+
 type OutMsg struct {
 	To                       string            `json:"to"`
 	ID                       string            `json:"message_id"`
 	Data                     map[string]string `json:"data,omitempty"`
+	Notification             Notification      `json:"notification,omitempty"`
 	MessageType              string            `json:"message_type,omitempty"`
 	CollapseKey              string            `json:"collapse_key,omitempty"`
 	TimeToLive               int               `json:"time_to_live,omitempty"`               //default:2419200 (in seconds = 4 weeks)
